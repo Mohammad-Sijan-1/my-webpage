@@ -1,22 +1,27 @@
+
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { X, ArrowRight, Pencil,RefreshCcw,Timer} from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { X, ArrowRight, Pencil, RefreshCcw, Timer } from "lucide-react";
 
 export default function VerifyOtpPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const [otp, setOtp] = useState("");
-  const [phone] = useState("01712345678");
+  const phone = searchParams.get("phone") || "01712345678";
   const [seconds, setSeconds] = useState(113);
 
-  const formattedTime = `০${Math.floor(seconds / 60)
-    .toString()
-    .replace(/\d/g, (d) => "০১২৩৪৫৬৭৮৯"[Number(d)])}:${(seconds % 60)
-    .toString()
-    .padStart(2, "0")
-    .replace(/\d/g, (d) => "০১২৩৪৫৬৭৮৯"[Number(d)])}`;
+  // Mask phone number
+  const maskedPhone =
+    phone.slice(0, 3) + "*".repeat(Math.max(0, phone.length - 3));
+
+  // Bengali timer
+  const toBangla = (value: string | number) =>
+    value.toString().replace(/\d/g, (d) => "০১২৩৪৫৬৭৮৯"[Number(d)]);
+
+  const formattedTime = `${toBangla(Math.floor(seconds / 60).toString().padStart(2, "0"))}:${toBangla((seconds % 60).toString().padStart(2, "0"))}`;
 
   const handleOtpChange = (value: string) => {
     setOtp(value.replace(/\D/g, "").slice(0, 4));
@@ -25,45 +30,48 @@ export default function VerifyOtpPage() {
   const handleVerify = () => {
     if (otp.length !== 4) return;
 
-    // TODO: Send OTP to your backend for verification.
+    // TODO: Verify OTP with backend
     console.log("OTP:", otp);
   };
 
   const handleResend = () => {
     if (seconds > 0) return;
 
-    // TODO: Request a new OTP from your backend.
+    // TODO: Request new OTP
     setSeconds(113);
   };
 
   return (
-    <main className="min-h-screen bg-[#F1F2F4] flex items-center justify-center px-4 py-10">
-      <div className="relative w-full max-w-115 rounded-3xl bg-white p-6 sm:p-9 shadow-[0_10px_50px_rgba(15,23,42,0.07)]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-[#00000099]/60 px-5 py-5 sm:px-6 sm:py-8">
 
-        {/* Close button */}
+      <div className="relative my-auto w-full max-w-120 rounded-2xl bg-white px-4 py-6 shadow-2xl sm:rounded-3xl sm:px-8 sm:py-9 md:px-9">
+
+        {/* Close Button */}
         <button
+          type="button"
           onClick={() => router.back()}
-          className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-[#F1F2F4] text-[#374151] transition hover:bg-gray-200"
-          aria-label="Close"
+          aria-label="Close modal"
+          className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-[#F1F2F4] text-slate-500 transition hover:bg-slate-200 sm:right-5 sm:top-5 sm:h-9 sm:w-9"
         >
-          <X size={19} />
+          <X size={20} />
         </button>
 
-      
-
         {/* Heading */}
-        <div className="text-start mt-5  sm:mt-6">
-          <h1 className="text-2xl font-bold text-[#0F172A] sm:text-[28px]">
+        <div className="mt-4 text-left sm:mt-6">
+
+          <h1 className="mt-6 text-xl font-bold leading-snug text-slate-900 sm:mt-0 sm:text-2xl sm:leading-10">
             OTP ভেরিফিকেশন
           </h1>
 
-          <p className="mt-3 text-sm text-start leading-6 text-[#64748B]">
+          <p className="mt-2 text-sm leading-5 text-slate-500 sm:text-[15px] sm:leading-7">
             মোবাইলে পাঠানো ৪ ডিজিটের কোডটি লিখুন
           </p>
+
         </div>
 
         {/* OTP Input */}
-        <div className="mt-8">
+        <div className="mt-4 sm:mt-6">
+
           <input
             type="text"
             inputMode="numeric"
@@ -71,83 +79,92 @@ export default function VerifyOtpPage() {
             maxLength={4}
             value={otp}
             onChange={(e) => handleOtpChange(e.target.value)}
-            placeholder="* * * *"
-            className="h-14 w-full rounded-xl border border-gray-200 bg-[#FAFAFA] text-center text-2xl font-semibold tracking-[18px] text-[#374151] outline-none transition placeholder:text-gray-300 focus:border-[#5AAD85] focus:ring-4 focus:ring-[#5AAD85]/10"
+            placeholder="----"
+            className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 text-center text-xl font-semibold tracking-[18px] text-slate-700 outline-none transition placeholder:tracking-[10px] placeholder:text-slate-300 focus:border-[#5AAD85] focus:ring-4 focus:ring-[#5AAD85]/10 sm:h-14 sm:text-2xl"
           />
 
           {/* Resend OTP */}
-          <div className="mt-4 flex items-center justify-end">
-            <RefreshCcw className="size-4 text-[#64748B] mx-2"/>
+          <div className="mt-2 flex items-center justify-end gap-1.5">
+
+            <RefreshCcw className="h-3 w-3 text-slate-400" />
+
             <button
+              type="button"
               onClick={handleResend}
               disabled={seconds > 0}
-              className={`text-sm font-semibold transition ${
+              className={`text-[13px] font-semibold transition ${
                 seconds > 0
-                  ? "cursor-not-allowed text-gray-400"
+                  ? "cursor-not-allowed text-slate-400"
                   : "text-[#5AAD85] hover:text-[#438b68]"
               }`}
             >
               Resend OTP
             </button>
+
           </div>
+
         </div>
 
         {/* Continue Button */}
         <button
+          type="button"
           onClick={handleVerify}
           disabled={otp.length !== 4}
-          className="mt-6 flex h-[54px] w-full items-center justify-center gap-2 rounded-xl bg-[#5AAD85] font-semibold text-white transition hover:bg-[#438b68] disabled:cursor-not-allowed disabled:opacity-50"
+          className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#5AAD85] text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 transition duration-300 hover:bg-[#479B72] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 sm:mt-6 sm:h-14 sm:text-base"
         >
           এগিয়ে যান
-          <ArrowRight size={18} />
+          <ArrowRight size={19} />
         </button>
 
-        {/* Resend information */}
-        <div className="mt-7 text-center">
-          <p className="text-sm text-gray-500">
+        {/* Resend Information */}
+        <div className="mt-5 text-center sm:mt-6">
+
+          <p className="text-sm text-slate-500">
             কোনো কোড পাননি?
           </p>
 
-          <div className="mt-2 flex flex-wrap items-center justify-center gap-2 text-sm">
-            <span className="text-gray-500">
+          <div className="mt-2 flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm">
+
+            <span className="text-slate-500">
               আবার অনুরোধ জানাতে অপেক্ষা করুন
             </span>
 
-            <span className="font-semibold tabular-nums flex gap-2 items-center rounded-full px-2 py-1 bg-[#FFDAD6] text-[#EF4444]">
-                <Timer className="size-5"/>
+            <span className="flex items-center gap-1.5 rounded-full bg-[#FFDAD6] px-2 py-1 font-semibold tabular-nums text-[#EF4444]">
+              <Timer className="h-4 w-4" />
               {formattedTime} সেকেন্ড
             </span>
+
           </div>
+
         </div>
 
-        {/* Phone number section */}
-        <div className="mt-8 border-t px-3 py-3 flex items-center justify-between bg-[#F3F4F6] rounded-2xl text-[#64748B] border-gray-100 pt-6">
-          <div>
-            <p className="text-sm text-gray-500">
-            মোবাইল নম্বর ভুল হয়নি তো?
-          </p>
-       <span className="font-semibold text-[#374151]">
-              {phone}
+        {/* Phone Number Section */}
+        <div className="mt-5 flex items-center justify-between gap-2 rounded-2xl border-t border-gray-100 bg-[#F3F4F6] px-3 py-3 sm:mt-6 sm:px-5">
+
+          <div className="min-w-0">
+
+            <p className="text-[10px] text-slate-500 sm:text-xs">
+              মোবাইল নম্বর ভুল হয়নি তো?
+            </p>
+
+            <span className="text-sm font-semibold tracking-wide text-slate-700 sm:text-base">
+              {maskedPhone}
             </span>
+
           </div>
 
-          
-     
-            <button
-              onClick={() => router.back()}
-              className="flex items-center bg-white px-2 py-1 rounded-xl gap-1.5 text-sm font-semibold text-[#0A6C49] hover:text-[#438b68]"
-            >
-              <Pencil size={14} />
-              নম্বর পরিবর্তন
-            </button>
-         
+          <button
+            type="button"
+            onClick={() => router.back()}
+            className="flex shrink-0 items-center gap-1.5 rounded-xl bg-white px-2.5 py-2 text-xs font-semibold text-[#0A6C49] transition hover:bg-[#5AAD85]/10 sm:px-3 sm:text-[13px]"
+          >
+            <Pencil size={13} />
+            নম্বর পরিবর্তন
+          </button>
+
         </div>
 
       </div>
-
-      <div className="absolute bg-red-700/40 text-5xl text-bold">
-        working
-      </div>
-    </main>
+    </div>
   );
 }

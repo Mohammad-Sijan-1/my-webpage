@@ -38,7 +38,7 @@ export default function Home() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-[#0F172A99] px-5 py-5 sm:px-6 sm:py-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-[#00000099]/60 px-5 py-5 sm:px-6 sm:py-8">
 
       <div className="relative my-auto w-full max-w-120 rounded-2xl bg-white px-4 py-6 shadow-2xl sm:rounded-3xl sm:px-8 sm:py-9 md:px-9">
 
@@ -146,7 +146,7 @@ export default function Home() {
             <path d="m9 12 2 2 4-4" />
           </svg>
 
-          <p className="min-w-0 flex-1 text-[11px] sm:leading-5 text-slate-600 sm:text-[11px] sm:leading-6">
+          <p className="min-w-0 flex-1 text-[11px]  text-slate-600 sm:text-[11px] sm:leading-6 leading-4">
             Mandi Safe Escrow এনক্রিপশন দ্বারা আপনার ফোন নম্বর সুরক্ষিত
           </p>
 
