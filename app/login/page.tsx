@@ -38,35 +38,35 @@ export default function Home() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-[#0F172A99] px-3 py-4 sm:px-6 sm:py-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-[#0F172A99] px-5 py-5 sm:px-6 sm:py-8">
 
-      <div className="relative my-auto w-full max-w-120 rounded-2xl bg-white px-5 py-7 shadow-2xl sm:rounded-3xl sm:px-8 sm:py-9 md:px-9">
+      <div className="relative my-auto w-full max-w-120 rounded-2xl bg-white px-4 py-6 shadow-2xl sm:rounded-3xl sm:px-8 sm:py-9 md:px-9">
 
         {/* Close Button */}
         <button
           type="button"
           aria-label="Close modal"
           onClick={() => router.back()}
-          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#F1F2F4] text-slate-500 transition hover:bg-slate-200 sm:right-5 sm:top-5"
+          className="absolute right-3 top-3 flex h-7 w-7 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-[#F1F2F4] text-slate-500 transition hover:bg-slate-200 sm:right-5 sm:top-5"
         >
           <X size={20} />
         </button>
 
         {/* Heading */}
-        <div className="mt-5 text-left sm:mt-6">
+        <div className="mt-4 text-left sm:mt-6">
 
-          <h2 className="mt-8 text-xl font-bold leading-snug text-slate-900 sm:mt-0 sm:text-2xl sm:leading-10">
+          <h2 className="mt-6 text-xl font-bold leading-snug text-slate-900 sm:mt-0 sm:text-2xl sm:leading-10">
             Mobile Mandi-র জগতে আপনাকে স্বাগতম।
           </h2>
 
-          <p className="mt-2 text-sm leading-6 text-slate-500 sm:mt-3 sm:text-[15px] sm:leading-7">
+          <p className="mt-2 text-sm leading-6 text-slate-500  sm:text-[15px] sm:leading-7">
             আপনার ফোন নম্বর দিয়ে সহজে লগইন বা একাউন্ট তৈরি করুন।
           </p>
 
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="mt-6 sm:mt-7">
+        <form onSubmit={handleSubmit} className="mt-4 sm:mt-6">
 
           <label
             htmlFor="phone"
@@ -76,7 +76,7 @@ export default function Home() {
           </label>
 
           {/* Phone Input */}
-          <div className="flex h-12 w-full items-center overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition focus-within:border-[#5AAD85] focus-within:ring-4 focus-within:ring-[#5AAD85]/10 sm:h-14">
+          <div className="flex h-11 w-full items-center overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition focus-within:border-[#5AAD85] focus-within:ring-4 focus-within:ring-[#5AAD85]/10 sm:h-14">
 
             <span className="flex h-full shrink-0 items-center border-r border-slate-200 px-3 text-sm font-semibold text-slate-700 sm:px-4">
               +880
@@ -112,14 +112,14 @@ export default function Home() {
           )}
 
           {/* OTP Description */}
-          <p className="mt-3 text-xs leading-6 text-[#9CA3AF] sm:text-sm">
+          <p className=" mt-2  text-[11px] leading-6 text-[#9CA3AF] sm:text-[11px]">
             ভেরিফিকেশনের জন্য আমরা একটি ৪-ডিজিটের ওটিপি (OTP) পাঠাব।
           </p>
 
           {/* Continue Button */}
           <button
             type="submit"
-            className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#5AAD85] text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 transition duration-300 hover:bg-[#479B72] active:scale-[0.98] sm:h-14 sm:text-base"
+            className="sm:mt-6 mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#5AAD85] text-sm font-semibold text-white shadow-lg shadow-emerald-600/20 transition duration-300 hover:bg-[#479B72] active:scale-[0.98] sm:h-14 sm:text-base"
           >
             এগিয়ে যান
             <ArrowRight size={19} />
@@ -128,7 +128,7 @@ export default function Home() {
         </form>
 
         {/* Security Message */}
-        <div className="mt-5 flex w-full items-start gap-2 rounded-xl bg-[#F1F2F4B2]/70 px-3 py-3 sm:mt-6 sm:px-4">
+        <div className="mt-4 flex w-full items-center  gap-2 rounded-xl bg-[#F1F2F4B2]/70 px-3 py-3 sm:mt-6 sm:px-4">
 
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +146,7 @@ export default function Home() {
             <path d="m9 12 2 2 4-4" />
           </svg>
 
-          <p className="min-w-0 flex-1 text-xs leading-5 text-slate-600 sm:text-[11px] sm:leading-6">
+          <p className="min-w-0 flex-1 text-[11px] leading-5 text-slate-600 sm:text-[11px] sm:leading-6">
             Mandi Safe Escrow এনক্রিপশন দ্বারা আপনার ফোন নম্বর সুরক্ষিত
           </p>
 
