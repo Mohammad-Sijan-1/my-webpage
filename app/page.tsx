@@ -1,55 +1,76 @@
 
 import React from "react";
-import { ArrowUpRight, Smartphone, User, Store } from "lucide-react";
+import {
+  ArrowUpRight,
+  Smartphone,
+  User,
+  Store,
+  Sparkles,
+} from "lucide-react";
 
-const page = () => {
+const Page = () => {
   const links = [
     {
-      title: "Login Page 01",
-      description: "Customer phone number login experience.",
+      title: "Login Page 1st Step",
+      description: "Start the authentication process with your mobile number.",
       href: "/login",
       icon: Smartphone,
       number: "01",
+      tag: "Mobile Number",
     },
     {
-      title: "Login Page 02",
-      description: "Alternative login page design.",
-      href: "/login",
+      title: "Login Page 2nd Step",
+      description: "Continue with the OTP verification process.",
+      href: "/login2",
       icon: User,
       number: "02",
+      tag: "OTP verification",
     },
     {
-      title: "Login Page 03",
-      description: "Explore another login interface.",
-      href: "/login",
+      title: "Login Page 3rd Step",
+      description: "Complete the Profile information.",
+      href: "/login3",
       icon: Store,
       number: "03",
+      tag: "Final Step",
     },
   ];
 
   return (
-    <main className="min-h-screen bg-[#F8FAFC] px-5 py-16 sm:px-8">
+    <main className="relative min-h-screen overflow-hidden bg-[#F6FAF8] px-5 py-16 sm:px-8 lg:py-24">
 
-      <div className="mx-auto max-w-5xl">
+      {/* Background Decoration */}
+      <div className="pointer-events-none absolute -left-40 -top-40 h-96 w-96 rounded-full bg-[#5AAD85]/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-[#5AAD85]/10 blur-3xl" />
+
+      <div className="relative mx-auto max-w-6xl">
 
         {/* Header */}
-        <div className="mb-12 text-center">
-          <span className="inline-block rounded-full bg-[#5AAD85]/10 px-4 py-2 text-sm font-semibold text-[#5AAD85]">
-            Mobile Mandi
-          </span>
+        <div className="mb-16 text-center">
 
-          <h1 className="mt-5 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Choose Your Login Design
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#5AAD85]/20 bg-white px-4 py-2 shadow-sm">
+            <Sparkles size={15} className="text-[#5AAD85]" />
+            <span className="text-xs font-bold tracking-wide text-[#438C69]">
+              MOBILE MANDI · DESIGN SYSTEM
+            </span>
+          </div>
+
+          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+            Authentication
+            <span className="block text-[#5AAD85]">Pages Collection.</span>
           </h1>
 
-          <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-slate-500 sm:text-base">
-            Explore our different login page designs and choose the experience
-            that works best for Mobile Mandi.
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-500 sm:text-base">
+            Explore our authentication page concepts and discover
+            a seamless login experience designed for Mobile Mandi.
           </p>
+
+          <div className="mx-auto mt-8 h-1 w-16 rounded-full bg-[#5AAD85]" />
+
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
 
           {links.map((item) => {
             const Icon = item.icon;
@@ -58,39 +79,52 @@ const page = () => {
               <a
                 key={item.number}
                 href={item.href}
-                className="group relative rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-2 hover:border-[#5AAD85]/50 hover:shadow-xl"
+                className="group relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-7 shadow-[0_8px_30px_rgba(0,0,0,0.03)] transition-all duration-500 hover:-translate-y-2 hover:border-[#5AAD85]/50 hover:shadow-[0_20px_50px_rgba(90,173,133,0.15)]"
               >
 
-                {/* Number */}
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold tracking-widest text-slate-300">
-                    {item.number}
+                {/* Top Decoration */}
+                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#5AAD85]/5 transition-transform duration-500 group-hover:scale-150" />
+
+                <div className="relative flex items-center justify-between">
+
+                  <span className="text-sm font-extrabold tracking-[0.2em] text-slate-300">
+                    / {item.number}
                   </span>
 
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#5AAD85]/10 text-[#5AAD85] transition group-hover:bg-[#5AAD85] group-hover:text-white">
-                    <Icon size={23} />
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#5AAD85]/10 text-[#5AAD85] transition-all duration-500 group-hover:rotate-6 group-hover:bg-[#5AAD85] group-hover:text-white">
+                    <Icon size={25} strokeWidth={1.8} />
                   </div>
+
                 </div>
 
                 {/* Content */}
-                <h2 className="mt-8 text-xl font-bold text-slate-900">
-                  {item.title}
-                </h2>
+                <div className="relative mt-9">
 
-                <p className="mt-2 text-sm leading-6 text-slate-500">
-                  {item.description}
-                </p>
+                  <span className="inline-flex rounded-full bg-[#5AAD85]/10 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#438C69]">
+                    {item.tag}
+                  </span>
 
-                {/* Link */}
-                <div className="mt-7 flex items-center justify-between border-t border-slate-100 pt-5">
-                  <span className="text-sm font-semibold text-[#5AAD85]">
+                  <h2 className="mt-5 text-xl font-bold text-slate-900 transition-colors group-hover:text-[#438C69]">
+                    {item.title}
+                  </h2>
+
+                  <p className="mt-3 min-h-13 text-sm leading-6 text-slate-500">
+                    {item.description}
+                  </p>
+
+                </div>
+
+                {/* Bottom Link */}
+                <div className="relative mt-8 flex items-center justify-between border-t border-slate-100 pt-5">
+
+                  <span className="text-sm font-bold text-[#5AAD85]">
                     Explore Design
                   </span>
 
-                  <ArrowUpRight
-                    size={20}
-                    className="text-[#5AAD85] transition group-hover:-translate-y-1 group-hover:translate-x-1"
-                  />
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#5AAD85]/10 text-[#5AAD85] transition-all duration-300 group-hover:translate-x-1 group-hover:bg-[#5AAD85] group-hover:text-white">
+                    <ArrowUpRight size={19} />
+                  </div>
+
                 </div>
 
               </a>
@@ -99,14 +133,44 @@ const page = () => {
 
         </div>
 
+        {/* GitHub Section */}
+        <div className="mt-14 flex flex-col items-center justify-center gap-4 rounded-3xl border border-[#5AAD85]/15 bg-white/80 p-8 text-center shadow-sm sm:flex-row sm:justify-between sm:text-left">
+
+          <div>
+            <h3 className="text-lg font-bold text-slate-900">
+              Explore the source code
+            </h3>
+            <p className="mt-1 text-sm text-slate-500">
+              Check out the complete project on GitHub.
+            </p>
+          </div>
+
+          <a
+            href="https://github.com/Mohammad-Sijan-1/my-webpage.git"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-xl bg-[#172B23] px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-1 hover:bg-[#5AAD85]"
+          >
+            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            View on GitHub
+            <ArrowUpRight size={16} />
+          </a>
+
+        </div>
+
         {/* Footer */}
-        <p className="mt-12 text-center text-xs text-slate-400">
-          © 2026 Mobile Mandi. All rights reserved.
-        </p>
+        <footer className="mt-14 border-t border-slate-200 pt-7 text-center">
+          <p className="text-xs font-medium text-slate-400">
+            © 2026 Mobile Mandi. All rights reserved.
+          </p>
+          <p className="mt-2 text-xs text-slate-400">
+            Designed with care for a better shopping experience.
+          </p>
+        </footer>
 
       </div>
     </main>
   );
 };
 
-export default page;
+export default Page;

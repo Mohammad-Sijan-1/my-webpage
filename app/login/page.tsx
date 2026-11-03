@@ -1,13 +1,15 @@
 
 "use client";
 
+
+// all import
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { X, Phone, ArrowRight } from "lucide-react";
 
 export default function Home() {
   const router = useRouter();
-
+// states
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
 
