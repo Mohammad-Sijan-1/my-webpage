@@ -59,7 +59,7 @@ export default function Home() {
             Mobile Mandi-র জগতে আপনাকে স্বাগতম।
           </h2>
 
-          <p className="mt-2 text-sm leading-6 text-slate-500  sm:text-[15px] sm:leading-7">
+          <p className="mt-2 text-sm leading-5 text-slate-500  sm:text-[15px] sm:leading-7">
             আপনার ফোন নম্বর দিয়ে সহজে লগইন বা একাউন্ট তৈরি করুন।
           </p>
 
@@ -112,7 +112,7 @@ export default function Home() {
           )}
 
           {/* OTP Description */}
-          <p className=" mt-2  text-[11px] leading-6 text-[#9CA3AF] sm:text-[11px]">
+          <p className=" mt-2  text-[11px] sm:leading-6 text-[#9CA3AF] sm:text-[11px]">
             ভেরিফিকেশনের জন্য আমরা একটি ৪-ডিজিটের ওটিপি (OTP) পাঠাব।
           </p>
 
@@ -146,7 +146,7 @@ export default function Home() {
             <path d="m9 12 2 2 4-4" />
           </svg>
 
-          <p className="min-w-0 flex-1 text-[11px] leading-5 text-slate-600 sm:text-[11px] sm:leading-6">
+          <p className="min-w-0 flex-1 text-[11px] sm:leading-5 text-slate-600 sm:text-[11px] sm:leading-6">
             Mandi Safe Escrow এনক্রিপশন দ্বারা আপনার ফোন নম্বর সুরক্ষিত
           </p>
 
