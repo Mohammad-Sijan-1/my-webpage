@@ -32,9 +32,11 @@ export default function Home() {
     }
 
     // Navigate to OTP page
+    
+
     router.push(
-      `/verify-otp?phone=${encodeURIComponent(formattedPhone)}`
-    );
+  `/login2?phone=${encodeURIComponent(formattedPhone)}`
+);
   };
 
   return (
