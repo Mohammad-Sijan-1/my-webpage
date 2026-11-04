@@ -14,8 +14,7 @@ export default function VerifyOtpPage() {
   const [seconds, setSeconds] = useState(113);
 
   // Mask phone number
-  const maskedPhone =
-    phone.slice(0, 3) + "*".repeat(Math.max(0, phone.length - 3));
+
 
   // Bengali timer
   const toBangla = (value: string | number) =>
@@ -27,12 +26,12 @@ export default function VerifyOtpPage() {
     setOtp(value.replace(/\D/g, "").slice(0, 4));
   };
 
-  const handleVerify = () => {
-    if (otp.length !== 4) return;
+const handleVerify = () => {
+  if (otp.length !== 4) return;
 
-    // TODO: Verify OTP with backend
-    console.log("OTP:", otp);
-  };
+  // Temporary navigation for frontend testing
+  router.push(`/login3?phone=${encodeURIComponent(phone)}`);
+};
 
   const handleResend = () => {
     if (seconds > 0) return;
@@ -40,6 +39,7 @@ export default function VerifyOtpPage() {
     // TODO: Request new OTP
     setSeconds(113);
   };
+
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-[#00000099]/60 px-5 py-5 sm:px-6 sm:py-8">
@@ -148,7 +148,7 @@ export default function VerifyOtpPage() {
             </p>
 
             <span className="text-sm font-semibold tracking-wide text-slate-700 sm:text-base">
-              {maskedPhone}
+              {phone}
             </span>
 
           </div>

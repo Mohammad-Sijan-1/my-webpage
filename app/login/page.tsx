@@ -115,7 +115,7 @@ export default function Home() {
 
           {/* OTP Description */}
           <p className=" mt-2  text-[11px] sm:leading-6 text-[#9CA3AF] sm:text-[11px]">
-            ভেরিফিকেশনের জন্য আমরা একটি ৪-ডিজিটের ওটিপি (OTP) পাঠাব।
+            ভেরিফিকেশনের জন্য আমরা একটি ৪-ডিজিটের ওটিপি (OTP) পাঠানো হবে।
           </p>
 
           {/* Continue Button */}
